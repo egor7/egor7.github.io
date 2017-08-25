@@ -1,29 +1,29 @@
----
-layout: compress
----
-
-<!-- Include Data Base  -->
-{% include dbase/dbase %}
-
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  {% include pieces/head.html %}
-  <body>
-    <div class="main" id="top">
-      <div class="container wrapper">
-        <div class="row">
-          {% include pieces/sidebar.html %}
-          <div class="col-sm-9 content-main">
-              {% if page.url == '/' %}
-                {% include pieces/hello.html %}
-              {% else %}
-                {{ content }}
-              {% endif %}
-          </div>
-        </div>
-      </div>
-      {% include pieces/footer.html %}
-    </div>
-  {% include scripts/src.html %}
-  </body>
-</html>
+	<html>
+		<head>
+			<title>{{ page.title }}</title>
+			<!-- link to main stylesheet -->
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+		</head>
+		<body>
+			<nav>
+	    		<ul>
+	        		<li><a href="/">Home</a></li>
+		        	<li><a href="/about">About</a></li>
+	        		<li><a href="/cv">CV</a></li>
+	        		<li><a href="/blog">Blog</a></li>
+	    		</ul>
+			</nav>
+			<div class="container">
+			
+			{{ content }}
+			
+			</div><!-- /.container -->
+			<footer>
+	    		<ul>
+	        		<li><a href="mailto:egor.shalashnikov@gmail.com">email</a></li>
+	        		<li><a href="https://github.com/egor7">github.com/egor7</a></li>
+				</ul>
+			</footer>
+		</body>
+	</html>
