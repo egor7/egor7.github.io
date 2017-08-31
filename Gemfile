@@ -5,8 +5,8 @@ source "https://rubygems.org"
 ## bundle update github-pages
 
 gem "minima", "~> 2.0"
-gem "jekyll", "3.5.2"
-#gem "github-pages", group: :jekyll_plugins
+#gem "jekyll", "3.5.2"
+gem "github-pages", group: :jekyll_plugins
 
 
 # Add plugins
