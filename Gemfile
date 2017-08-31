@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ## bundle exec jekyll serve
 ## bundle update github-pages
 
-gem "minima", "~> 2.0"
+#gem "minima", "~> 2.0"
 #gem "jekyll", "3.5.2"
 gem "github-pages", group: :jekyll_plugins
 
