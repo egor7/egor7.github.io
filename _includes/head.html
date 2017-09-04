@@ -16,10 +16,16 @@
 
   <!-- MathJax Section -->
   <script type="text/x-mathjax-config">
+    //MathJax.Hub.Queue(function() {
+    //    var all = MathJax.Hub.getAllJax(), i;
+    //    for(i=0; i < all.length; i += 1) {
+    //        all[i].SourceElement().parentNode.className += ' has-jax';
+    //    }
+    //});
     MathJax.Hub.Config({
       tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        //inlineMath: [['$','$'], ['\\(','\\)']]
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$'], ['\\(','\\)']]
       },
       CommonHTML: {
         scale: 85,
@@ -34,6 +40,12 @@
         equationNumbers: { autoNumber: "AMS" }
       }
     });
+    //code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
   </script>
   <script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+  <link rel="stylesheet" href="/assets/chartist.css">
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/0.11.0/chartist.min.css"-->
+  <script src="//cdn.jsdelivr.net/chartist.js/0.11.0/chartist.min.js"></script>
+
 </head>

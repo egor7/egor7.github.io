@@ -1,11 +1,12 @@
-title: Homepage
+title: Home
+author: Egor Shalashnikov
 email: egor.shalashnikov@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   math morphology
   programming
   languages go golang c c++ python php oracle pl/sql
-  arch linux emacs
-  plan9 acme sam
+  arch linux plan9
+  acme sam emacs
   tdd codegens
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -25,3 +26,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+
+sass:
+  sass_dir: _sass
+  style: compressed
