@@ -254,8 +254,45 @@ To get the closest $\widetilde{U}$ to $U$, we ask in this example that they woul
   \label{eq:Ufmin}
 \end{equation}
 
+Substituting equations \eqref{eq:Uf} and \eqref{eq:ct}, the right-hand side of \eqref{eq:Ufmin} becomes
+
+$$
+\begin{equation}
+  \begin{aligned}
+    &\int_{-\infty}^{\infty}\left|\frac{[S(f)+N(f)]\Phi(f)}{R(f)} - \frac{S(f)}{R(f)}\right|^2df\\
+    = &\int_{-\infty}^{\infty}|R(f)|^{-2}\left\{|S(f)|^2|1-\Phi(f)|^2 + |N(f)|^2|\Phi(f)|^2 \right\}df
+  \end{aligned}
+  \label{eq:eq1}
+\end{equation}
+$$
 
 
+The signal $S$ and the noise $N$ are _uncorrelated_, so their cross product, when
+integrated over frequency f, gave zero. This is practically the definition of what we
+mean by noise.
+
+The expression \eqref{eq:eq1} will be a minimum if and only if the integrand
+is minimized with respect to $\Phi(f)$ at every value of $f$. Let us search for such a
+solution where $\Phi(f)$ is a real function. Differentiating with respect to $\Phi$, and setting
+the result equal to zero gives
+\begin{equation}
+  \Phi(f) = \frac{|S(f)|^2}{|S(f)|^2 + |N(f)|^2}
+  \label{eq:Phidiff}
+\end{equation}
+
+This is the formula for the optimal filter $\Phi(f)$.
+
+Notice that equation \eqref{eq:Phidiff} involves $S$, the smeared signal, and $N$, the noise.
+The two of these add up to be $C$, the measured signal. Equation \eqref{eq:Phidiff} does not
+contain $U$, the "true" signal. This makes for an important simplification: The optimal
+filter can be determined independently of the determination of the deconvolution
+function that relates $S$ and $U$.
+
+
+To determine the optimal filter from equation \eqref{eq:Phidiff} we need some way
+of separately estimating $|S|^2$ and $|N|^2$.  There is no way to do this from the
+measured signal $C$ alone without some other information, or some assumption or
+guess. Luckily, the extra information is often easy to obtain.
 
 Bibliography
 ============
