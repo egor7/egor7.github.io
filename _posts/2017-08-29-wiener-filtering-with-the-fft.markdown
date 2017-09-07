@@ -22,6 +22,7 @@ Let's start with uncorrupted signal $u(t)$. We will use the following [image][ai
   Pic.1. Original image, $u(t)$
 </td></tr>
 </table>
+<br/>
 
 
 First, the apparatus may not have a perfect "delta-function" response,
@@ -121,6 +122,7 @@ convert 5.3.02.png -gaussian-blur 0x2 5.3.02.gaus.png
   Pic.2. Smeared image, $s(t)$
 </td></tr>
 </table>
+<br/>
 
 
 <!--
@@ -213,6 +215,8 @@ perlin 512x512 -n poisson -a 2 noise.png
   Pic.3. Noise, $n(t)$
 </td></tr>
 </table>
+<br/>
+
 
 To get the result use the Imagemagick's special [composition method][im_compose]:
 ```bash
@@ -230,6 +234,27 @@ convert 5.3.02.gaus.png noise.30-70.png -compose Mathematics -define compose:arg
   Pic.4. Corrupted image, $c(t) = s(t) + n(t)$
 </td></tr>
 </table>
+<br/>
+
+
+To deconvolve the effects of the response function $r$ and when noise is present,
+we have to find the optimal filter, $\phi(t)$ or $\Phi(f)$, which, when applied to the measured
+signal $c(t)$ or $C(f)$, and then deconvolved by $r(t)$ or $R(f)$, produces a signal $\widetilde{u}(t)$
+or $\widetilde{U}(f)$ that is as close as possible to the uncorrupted signal $u(t)$ or $U(f)$. In other
+words we will estimate the true signal $U$ by
+\begin{equation}
+  \widetilde{U}(f) = \frac{C(f)\Phi(f)}{R(f)}
+  \label{eq:Uf}
+\end{equation}
+
+
+To get the closest $\widetilde{U}$ to $U$, we ask in this example that they would be _close in the least-square sense_
+\begin{equation}
+  \int_{-\infty}^{\infty}|\widetilde{u}(f)-u(f)|^2dt = \int_{-\infty}^{\infty}|\widetilde{U}(f)-U(f)|^2df \quad \text{is minimized.}
+  \label{eq:Ufmin}
+\end{equation}
+
+
 
 
 Bibliography
