@@ -15,3 +15,6 @@ permalink: /links/
 * [includegraphics](https://stackoverflow.com/questions/8708945/how-to-position-text-over-an-image-in-css)
 * [bibliography](http://ref.lexique.org/) to html
 * [Numerical recipes in C](http://dl.acm.org/citation.cfm?id=148286)
+* [SVG](https://www.sitepoint.com/add-svg-to-web-page/) in html
+* [SVG](https://www.embeddedrelated.com/showarticle/599.php) in html 2
+* [Perlin](http://fmwconcepts.com/imagemagick/perlin/index.php) noise

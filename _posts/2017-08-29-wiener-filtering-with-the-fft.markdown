@@ -41,13 +41,11 @@ where $S,R,U$ are the Fourier transforms of $s,r,u$ respectively.
 
 
 
-Let us use the Gaussian distribution as the response function:
+<!--div class="ct-chart ct-golden-section" id="chart1"></div-->
+<!--div class="ct-chart ct-golden-section" id="chart2"></div-->
+<!--div class="ct-chart ct-golden-section" id="chart3"></div-->
 
-<div class="ct-chart ct-golden-section" id="chart1"></div>
-<div class="ct-chart ct-golden-section" id="chart2"></div>
-<div class="ct-chart ct-golden-section" id="chart3"></div>
-
-<script>
+<!--script>
   // Our labels and three data series
   var data = {
     labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6'],
@@ -97,9 +95,99 @@ Let us use the Gaussian distribution as the response function:
   });
 
   new Chartist.Line('#chart3', data, options);
-</script>
+</script-->
+
+Let us use the Gaussian distribution as the response function, and,
+to be more specific, use 2 dimensions $t_1$ and $t_2$ for $t$:
+\begin{equation}
+  r(t_1,t_2) = \frac{e^{-(t_1^2 + t_2^2)/a^2}}{a^2\pi}, \quad a=0.2
+  \label{eq:rt}
+\end{equation}
+
+Use Imagemagick to perform this task:
+
+```bash
+convert 5.3.02.png -gaussian-blur 0x2 5.3.02.gaus.png
+```
+
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/5.3.02.gaus.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.2. Smeared image, $s(t)$
+</td></tr>
+</table>
 
 
+<!--
+convert -size 128x128 xc:black -fill white \
+        -draw "point 64,64" -gaussian-blur 0x8 -auto-level \
+        -write gaus8.png -fft -delete 1 \
+        -auto-level -evaluate log 1000 gaus8_spectrum.png
+-->
+
+
+<!--object type="image/svg+xml" data="/img/01.svg">
+  Your browser does not support SVG
+</object-->
+
+
+<!--svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="500">
+  <circle cx="100" cy="100" r="99" fill="yellow" stroke="red" />
+  <circle cx="100" cy="100" r="3" fill="blue" />
+  <foreignObject x="100" y="100" width="100" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Times; font-size:15px">
+    \(\displaystyle{x+1\over y-1}\)
+    </div>
+  </foreignObject>
+</svg-->
+
+
+<!--svg xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="126" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="110" y="65">plain text</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="320" y="65">\( e^{-sT} \)</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="512" y="65">R\( \frac{3}{s^2+1} \)</text>
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="470" y="95">aligned at the right</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="512" y="145">L\( H(s) \)</text>
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="470" y="175">aligned at the left</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="704" y="145">$ K_p + \left( 1 + {1 \over T s} \right) $</text>
+  <path d="M 192 60 L 248 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,60 248,56 248,64 255,60" stroke="rgb(0,0,0)" />
+  <path d="M 384 60 L 440 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,60 440,56 440,64 447,60" stroke="rgb(0,0,0)" />
+  <path d="M 384 60 L 416 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 416 60 L 416 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 416 140 L 440 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,140 440,136 440,144 447,140" stroke="rgb(0,0,0)" />
+  <path d="M 576 140 L 632 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="639,140 632,136 632,144 639,140" stroke="rgb(0,0,0)" />
+  <path d="M 768 140 L 784 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 784 140 L 784 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 25 L 784 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 25 L 320 32" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="320,39 316,32 324,32 320,39" stroke="rgb(0,0,0)" />
+</svg-->
+<!--script type="text/javascript">new Svg_MathJax().install();</script-->
 
 
 Second, the measured signal may contain an additional component of noise $n(t)$.
@@ -110,7 +198,38 @@ So the result, currupted signal $c(t)$, contains the following two components:
 \end{equation}
 
 
+Add a [Perlin][perlin_wiki] noise by running a Perlin-noise [generator][perlin_gen]:
+```bash
+perlin 512x512 -n poisson -a 2 noise.png
+```
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/noise.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.3. Noise, $n(t)$
+</td></tr>
+</table>
 
+To get the result use the Imagemagick's special [composition method][im_compose]:
+```bash
+convert noise.png -normalize  +level 30,70% noise.30-70.png
+convert 5.3.02.gaus.png noise.30-70.png -compose Mathematics -define compose:args='0,1,1,-0.5' -composite 5.3.02.corrupt.png
+```
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/5.3.02.corrupt.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.4. Corrupted image, $c(t) = s(t) + n(t)$
+</td></tr>
+</table>
 
 
 Bibliography
@@ -127,7 +246,6 @@ Bibliography
  address = {New York, NY, USA},
 }
 {% endcomment %}
-[airport]: http://sipi.usc.edu/database/database.php?volume=misc&image=26#top
 
 
 {% comment %}
@@ -202,3 +320,9 @@ print_hi('Tom')
 see [Jekyll docs][jekyll-docs] for additional info
 [jekyll-docs]: https://jekyllrb.com/docs/home
 {% endcomment %}
+
+
+[airport]: http://sipi.usc.edu/database/database.php?volume=misc&image=26#top
+[perlin_wiki]: https://en.wikipedia.org/wiki/Perlin_noise
+[perlin_gen]: http://fmwconcepts.com/imagemagick/perlin/index.php
+[im_compose]: https://www.imagemagick.org/Usage/compose/#special
