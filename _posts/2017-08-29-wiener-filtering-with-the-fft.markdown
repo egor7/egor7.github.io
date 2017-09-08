@@ -5,6 +5,14 @@ date:   2017-08-29 12:00:09 +0300
 categories: jekyll update
 ---
 
+<div style="display:none">
+\(
+  \def\<#1>{\left<#1\right>}
+  \newcommand{\CC}{\mathbf{C}}
+  \newcommand{\R}{\mathbb{R}}
+\)
+</div>
+
 Introduction
 ============
 
@@ -282,41 +290,28 @@ In this case the representation of this signal in _frequency domain_,
 __discrete Fourier transform__ of the $N$ points $h_k$, will be
 \begin{equation}
   H_n \equiv \sum_{k=0}^{N-1}h_ke^{2\pi ikn/N}
+  \label{eq:four_H_n}
 \end{equation}
 
-
-{% comment %}
-12.1.9
-For example, we
-can sample a long stretch of data $c(t)$ and plot its power spectral density using
-equations (12.0.14), (12.1.8), and (12.1.5). 
-
-
+The formula for the __discrete inverse Fourier transform__, which recovers the set
+of $h_k$'s from the $H_n$'s is:
 \begin{equation}
-  P_h(f) \equiv |H(f)|^2 + |H(-f)|^2 \qquad 0 \leq f < \infty
-  \label{eq:PSD}
+  h_k = \frac{1}{N} \sum_{k=0}^{N-1}H_ne^{-2\pi ikn/N}
+  \label{eq:four_h_k}
 \end{equation}
 
-\begin{equation}
-  f_n \equiv \frac{n}{N\Delta}, \qquad n=-\frac{N}{2},\ldots,\frac{N}{2}
-  \label{eq:fn}
-\end{equation}
 
-\begin{equation}
-  H(f_n) \approx \Delta H_n
-  \label{eq:delta}
-\end{equation}
-{% endcomment %}
+Now get back to our problem.
 
 
-The solution
-============
+Optimal filter
+==============
 
-To deconvolve the effects of the response function $r$ and when noise is present,
+To deconvolve the effects of the response function $r$ \eqref{eq:rt} and when noise \eqref{eq:ct} is present,
 we have to find the optimal filter, $\phi(t)$ or $\Phi(f)$, which, when applied to the measured
 signal $c(t)$ or $C(f)$, and then deconvolved by $r(t)$ or $R(f)$, produces a signal $\widetilde{u}(t)$
-or $\widetilde{U}(f)$ that is as close as possible to the uncorrupted signal $u(t)$ or $U(f)$. In other
-words we will estimate the true signal $U$ by
+or $\widetilde{U}(f)$ that is as close as possible to the uncorrupted signal $u(t)$ or $U(f)$, see \eqref{eq:Sf}.
+In other words we will estimate the true signal $U$ by
 \begin{equation}
   \widetilde{U}(f) = \frac{C(f)\Phi(f)}{R(f)}
   \label{eq:Uf}
@@ -370,9 +365,33 @@ measured signal $C$ alone without some other information, or some assumption or
 guess.
 
 We could obtain the extra information in the following way.
+For example, we can sample a long stretch of data $c(t)$ and plot
+its _one-sided power spectral density_ (PSD) using equation
+\begin{equation}
+  P_h(f) \equiv |H(f)|^2 + |H(-f)|^2 = 2|H(f)|^2 \qquad 0 \leq f < \infty, \quad h(t)\in\R
+  \label{eq:PSD}
+\end{equation}
+
+The relation between the discrete Fourier transform of a set
+of numbers and their continuous Fourier transform when they are viewed as samples
+of a continuous function sampled at an interval $\Delta$ can be rewritten as[^1]
+
+\begin{equation}
+  H(f_n) \approx \Delta H_n
+  \label{eq:approx_delta}
+\end{equation}
+
+where $f_n$ is given by
+
+\begin{equation}
+  f_n \equiv \frac{n}{N\Delta}, \qquad n=-\frac{N}{2},\ldots,\frac{N}{2}
+  \label{eq:fn}
+\end{equation}
 
 
-
+{% comment %}
+(12.0.14), (12.1.8), and (12.1.5). 
+{% endcomment %}
 
 
 
@@ -404,12 +423,6 @@ n & \text{Left} & \text{Center} & \text{Right} \\
 3 & -20 & 2000 & 1+10i
 \end{array}
 $$
-<div style="display:none">
-\(
-  \def\<#1>{\left<#1\right>}
-  \newcommand{\CC}{\mathbf{C}}
-\)
-</div>
 See $$\<x,y,z>$$
 equations:
 $$
