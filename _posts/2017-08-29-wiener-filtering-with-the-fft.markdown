@@ -290,7 +290,6 @@ __discrete Fourier transform__ of the $N$ points $h_k$, will be
 For example, we
 can sample a long stretch of data $c(t)$ and plot its power spectral density using
 equations (12.0.14), (12.1.8), and (12.1.5). 
-{% endcomment %}
 
 
 \begin{equation}
@@ -307,6 +306,7 @@ equations (12.0.14), (12.1.8), and (12.1.5).
   H(f_n) \approx \Delta H_n
   \label{eq:delta}
 \end{equation}
+{% endcomment %}
 
 
 The solution
