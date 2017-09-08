@@ -5,11 +5,15 @@ date:   2017-08-29 12:00:09 +0300
 categories: jekyll update
 ---
 
+Introduction
+============
+
 There are a number of tasks in numerical processing that are routinely
 handled with Fourier techniques. One of these is filtering for the removal of noise
 from a "corrupted" signal[^1].
 
-Let's start with uncorrupted signal $u(t)$. We will use the following [image][airport], 512px*512px, as an example:
+Let's prepare an image to our experiments. We start with uncorrupted signal
+$u(t)$. We can take the following [image][airport], 512px*512px, as an example:
 
 <table style="margin: 0px auto;">
 <tr><td>
@@ -236,6 +240,77 @@ convert 5.3.02.gaus.png noise.30-70.png -compose Mathematics -define compose:arg
 </table>
 <br/>
 
+We've done with the image preparation. Now let's get deep into some formulas.
+
+
+Fourier transform
+=================
+
+A physical process can be described either in the _time domain_, by the values of
+some quantity $h$ as a function of time $t$, e.g., $h(t)$, or else in the _frequency domain_,
+where the process is specified by giving its amplitude $H$ (a complex number indicating phase also),
+as a function of frequency $f$, that is $H(f)$, with $-\infty < f < \infty$.
+For many purposes it is useful to think of $h(t)$ and $H(f)$ as being
+two different representations of the same function. One goes back and forth between
+these two representations by means of the __Fourier transform equations__,
+
+$$
+\begin{equation}
+  \begin{aligned}
+    H(f) &= \int_{-\infty}^{\infty}h(t)e^{2\pi ift}dt\\
+    h(t) &= \int_{-\infty}^{\infty}H(f)e^{-2\pi ift}df
+  \end{aligned}
+  \label{eq:f}
+\end{equation}
+$$
+
+We estimate the Fourier transform of a function from a finite number of its
+sampled points. Suppose that we have $N$ consecutive sampled values
+\begin{equation}
+  h_k \equiv h(t_k), \qquad t_k \equiv k\Delta, \qquad k = 0, 1, 2, \ldots, N − 1
+  \label{eq:h_k}
+\end{equation}
+Here $k$ represents coordinates $(k_1,k_2)$ on the image, $k_1 \in [0..511]$,
+$k_2 \in [0..511]$, and $h_k$ -- image brightness at these points.
+$\Delta$ is a "one pixel" interval.
+
+As you see we are not dealing with the exactly _time domain_, instead we treat 
+image as a signal, parameterized with 2-dimentional parameter $t = (t_1,t_2)$.
+
+
+In this case the representation of this signal in _frequency domain_,
+__discrete Fourier transform__ of the $N$ points $h_k$, will be
+\begin{equation}
+  H_n \equiv \sum_{k=0}^{N-1}h_ke^{2\pi ikn/N}
+\end{equation}
+
+
+{% comment %}
+12.1.9
+For example, we
+can sample a long stretch of data $c(t)$ and plot its power spectral density using
+equations (12.0.14), (12.1.8), and (12.1.5). 
+{% endcomment %}
+
+
+\begin{equation}
+  P_h(f) \equiv |H(f)|^2 + |H(-f)|^2 \qquad 0 \leq f < \infty
+  \label{eq:PSD}
+\end{equation}
+
+\begin{equation}
+  f_n \equiv \frac{n}{N\Delta}, \qquad n=-\frac{N}{2},\ldots,\frac{N}{2}
+  \label{eq:fn}
+\end{equation}
+
+\begin{equation}
+  H(f_n) \approx \Delta H_n
+  \label{eq:delta}
+\end{equation}
+
+
+The solution
+============
 
 To deconvolve the effects of the response function $r$ and when noise is present,
 we have to find the optimal filter, $\phi(t)$ or $\Phi(f)$, which, when applied to the measured
@@ -292,7 +367,15 @@ function that relates $S$ and $U$.
 To determine the optimal filter from equation \eqref{eq:Phidiff} we need some way
 of separately estimating $|S|^2$ and $|N|^2$.  There is no way to do this from the
 measured signal $C$ alone without some other information, or some assumption or
-guess. Luckily, the extra information is often easy to obtain.
+guess.
+
+We could obtain the extra information in the following way.
+
+
+
+
+
+
 
 Bibliography
 ============
