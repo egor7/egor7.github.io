@@ -394,6 +394,89 @@ where $f_n$ is given by
 {% endcomment %}
 
 
+Some more steps
+===============
+to be arranged...
+
+FFT [transform][im_fft] with imagemagick
+```bash
+convert 5.3.02.corrupt.png -fft  +depth \
+          \( -clone 0 -write magnitude.png +delete \) \
+          \( -clone 1 -write phase.png +delete \) \
+          null:
+convert 5.3.02.corrupt.png -fft  +depth \
+          \( -clone 0 -auto-level -evaluate log 10000 -write magnitude_log.png +delete \) \
+          \( -clone 1 -write phase.png +delete \) \
+          null:
+
+im_profile magnitude_log.png magnitude_log_profile.png
+im_profile -v magnitude_log.png magnitude_log_profile_v.png
+```
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/magnitude.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.5. FFT magnitude, mostly black with a single white dot in the middle
+</td></tr>
+</table>
+<br/>
+
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/magnitude_log.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.6. FFT magnitude log scale
+</td></tr>
+</table>
+<br/>
+
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 341px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/magnitude_log_profile.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.7. Log magnitude profile
+</td></tr>
+</table>
+<br/>
+
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 341px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/magnitude_log_profile_v.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.8. Log magnitude vertical profile
+</td></tr>
+</table>
+<br/>
+
+<table style="margin: 0px auto;">
+<tr><td>
+<div style="position: relative; height: 512px; width: 512px;">
+  <img style="position: absolute; left: 0;     top: 0;" src="/img/phase.png" />
+  <!--p style="position: absolute; left: 256px; top: 0; z-index: 100; margin: 0px; padding: 0px;">$$E = mc^2$$</p-->
+</div>
+</td></tr>
+<tr><td style="width:99%">
+  Pic.9. FFT phase
+</td></tr>
+</table>
+<br/>
+
 
 
 Bibliography
@@ -484,3 +567,4 @@ see [Jekyll docs][jekyll-docs] for additional info
 [perlin_wiki]: https://en.wikipedia.org/wiki/Perlin_noise
 [perlin_gen]: http://fmwconcepts.com/imagemagick/perlin/index.php
 [im_compose]: https://www.imagemagick.org/Usage/compose/#special
+[im_fft]: http://www.imagemagick.org/Usage/fourier/

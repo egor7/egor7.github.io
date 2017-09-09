@@ -18,3 +18,4 @@ permalink: /links/
 * [SVG](https://www.sitepoint.com/add-svg-to-web-page/) in html
 * [SVG](https://www.embeddedrelated.com/showarticle/599.php) in html 2
 * [Perlin](http://fmwconcepts.com/imagemagick/perlin/index.php) noise
+* [13 charpet](http://www.aip.de/groups/soe/local/numres/bookcpdf/c13-3.pdf) of The Art of Scientific Computing
