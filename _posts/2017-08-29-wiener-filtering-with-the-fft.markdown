@@ -123,6 +123,17 @@ Use Imagemagick to perform this task:
 convert 5.3.02.png -gaussian-blur 0x2 5.3.02.gaus.png
 ```
 
+Note than you may need to rebuild it to use it's HDRI feature:
+```bash
+sudo apt-get install fftw-dev libjpeg62-dev
+sudo apt-get install libfftw3-3 libfftw3-dev
+apt-get source imagemagick
+cd im*
+./configure --enable-hdri --with-jp2=yes --with-jpeg=yes --with-lqr --with-fftw=yes
+make install
+sudo ldconfig /usr/local/lib
+```
+
 <table style="margin: 0px auto;">
 <tr><td>
 <div style="position: relative; height: 512px; width: 512px;">
